@@ -16,16 +16,17 @@
 
 ---
 
-## ▶️ Lancement automatique de l'application (Windows & Linux)
+## ▶️ Lancement automatique de l'application
 
-Voici une **commande unique** à copier-coller dans votre terminal. Elle :
+Voici une **commande unique** à copier-coller dans votre terminal.  
+Elle :
 - Libère les ports 3306, 8080 et 4200 si occupés
-- Clone le dépôt GitHub
-- Lance le projet avec Docker
+- Clône le dépôt GitHub
+- Construit et lance le projet avec Docker
 
 ```bash
-# Pour Windows (CMD) :
+# 👉 Pour Windows (CMD) :
 (for %P in (3306 8080 4200) do @for /f "tokens=1" %I in ('docker ps --format "{{.ID}} {{.Ports}}" ^| findstr ":%P"') do docker rm -f %I) & git clone https://github.com/BDSDM/Mon-CafeManagement3-Dockerise.git && cd Mon-CafeManagement3-Dockerise && docker-compose build && docker-compose up -d
 
-# Pour Linux (Bash) :
+# 👉 Pour Linux (Bash) :
 for P in 3306 8080 4200; do docker ps --format '{{.ID}} {{.Ports}}' | grep ":$P" | awk '{print $1}' | xargs -r docker rm -f; done && git clone https://github.com/BDSDM/Mon-CafeManagement3-Dockerise.git && cd Mon-CafeManagement3-Dockerise && docker-compose build && docker-compose up -d
