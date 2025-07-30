@@ -20,10 +20,20 @@
 
 Voici une **commande unique** à copier-coller dans votre terminal.  
 Elle :
-- Libère les ports 3306, 8080 et 4200 si occupés
+- Libère les ports `3306`, `8080` et `4200` si occupés
 - Clône le dépôt GitHub
 - Construit et lance le projet avec Docker
 
-  
+---
 
-<pre><code>### ▶️ Pour Windows (CMD) ```bash (for %P in (3306 8080 4200) do @for /f "tokens=1" %I in ('docker ps --format "{{.ID}} {{.Ports}}" ^| findstr ":%P"') do docker rm -f %I) & git clone https://github.com/BDSDM/Mon-CafeManagement3-Dockerise.git && cd Mon-CafeManagement3-Dockerise && docker-compose build && docker-compose up -d ``` ### ▶️ Pour Linux (Bash) ```bash for P in 3306 8080 4200; do docker ps --format '{{.ID}} {{.Ports}}' | grep ":$P" | awk '{print $1}' | xargs -r docker rm -f; done && git clone https://github.com/BDSDM/Mon-CafeManagement3-Dockerise.git && cd Mon-CafeManagement3-Dockerise && docker-compose build && docker-compose up -d ``` </code></pre>
+### 🪟 Pour Windows (CMD)
+
+```cmd
+(for %P in (3306 8080 4200) do @for /f "tokens=1" %I in ('docker ps --format "{{.ID}} {{.Ports}}" ^| findstr ":%P"') do docker rm -f %I) & git clone https://github.com/BDSDM/Mon-CafeManagement3-Dockerise.git && cd Mon-CafeManagement3-Dockerise && docker-compose build && docker-compose up -d
+```
+
+### 🪟 Pour Linux (bash)
+
+```bash
+for P in 3306 8080 4200; do docker ps --format '{{.ID}} {{.Ports}}' | grep ":$P" | awk '{print $1}' | xargs -r docker rm -f; done && git clone https://github.com/BDSDM/Mon-CafeManagement3-Dockerise.git && cd Mon-CafeManagement3-Dockerise && docker-compose build && docker-compose up -d
+```
